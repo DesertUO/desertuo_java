@@ -38,7 +38,7 @@ public abstract class CustomItem {
         return this.itemStack;
     }
 
-    // This is where you define what happens on each click
+    // Methods to be overriden to say what happens on each click
     public void onLeftClick(Player player) {};
     public void onRightClick(Player player) {};
 

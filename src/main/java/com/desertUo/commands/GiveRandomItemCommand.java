@@ -81,18 +81,17 @@ public class GiveRandomItemCommand implements BasicCommand {
 
     @Override
     public List<String> suggest(CommandSourceStack source, String[] args) {
+        // It worked for a day, IDK
+        
         if (args.length == 1) {
             List<String> suggestions = new ArrayList<>();
-            // Add vanilla selectors
-            suggestions.add("@a"); // All players
-            suggestions.add("@r"); // Random player
+            suggestions.add("@a");
+            suggestions.add("@r");
 
-            // Add actual online player names
             for (Player p : Bukkit.getOnlinePlayers()) {
                 suggestions.add(p.getName());
             }
 
-            // Filter based on what the user has typed so far
             return suggestions.stream()
                     .filter(s -> s.toLowerCase().startsWith(args[0].toLowerCase()))
                     .toList();

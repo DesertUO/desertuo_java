@@ -33,7 +33,6 @@ public class SetHomeCommand implements BasicCommand {
         Location loc = player.getLocation();
         String homeName = (args.length == 0) ? "home" : args[0].toLowerCase();
 
-        // Serialize location to a BSON Document
         Document homeDoc = new Document("name", homeName)
                 .append("x", loc.getX())
                 .append("y", loc.getY())
@@ -50,7 +49,6 @@ public class SetHomeCommand implements BasicCommand {
             // Get existing homes list
             List<Document> homes = data.getList("homes", Document.class, new ArrayList<>());
 
-            // 1. Check if the home already exists (Update mode)
             int existingIndex = -1;
             for (int i = 0; i < homes.size(); i++) {
                 if (homes.get(i).getString("name").equalsIgnoreCase(homeName)) {
@@ -59,14 +57,13 @@ public class SetHomeCommand implements BasicCommand {
                 }
             }
 
-            // 2. Limit Check
-            // If it's a NEW home and they already have 5, stop them.
+            // Limit Check
             if (existingIndex == -1 && homes.size() >= 5) {
                 player.sendMessage(Utils.formatMessage("&cYou have reached your limit of 5 homes!"));
                 return;
             }
 
-            // 3. Update or Add
+            // Update / Add
             if (existingIndex != -1) {
                 homes.set(existingIndex, homeDoc); // Overwrite existing
                 player.sendMessage(Utils.formatMessage("&aHome '&f" + homeName + "&a' has been updated!"));
@@ -74,8 +71,6 @@ public class SetHomeCommand implements BasicCommand {
                 homes.add(homeDoc); // Add new
                 player.sendMessage(Utils.formatMessage("&aHome '&f" + homeName + "&a' has been set! (" + homes.size() + "/5)"));
             }
-
-            // 4. Save back to Mongo
             plugin.getMongoManager().updatePlayerDataField(player.getUniqueId(), "homes", homes);
         });
 

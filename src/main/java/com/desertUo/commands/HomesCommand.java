@@ -56,7 +56,7 @@ public class HomesCommand implements BasicCommand {
         return homes.stream()
                 .filter(home -> home.getString("name").equalsIgnoreCase(searchName))
                 .findFirst()
-                .orElse(null); // Returns null if no home with that name exists
+                .orElse(null); // If no home with that name exists
     }
 
     @Override

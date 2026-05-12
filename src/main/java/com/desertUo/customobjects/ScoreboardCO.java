@@ -189,7 +189,7 @@ public class ScoreboardCO implements Runnable {
         Component playerLine12 = Utils.formatMessage("Playtime: &e" + PlaytimeUtils.getStringFormattedPlaytime(player));
         setPlayerScoreboardSidebarLine(playerUUID, playerLine12, 12);
 
-        Component playerLine11 = Utils.formatMessage("Level: &b" + profile.level + " &7(" + profile.xp + " xp / " + profile.getXpGoal() + " xp)");
+        Component playerLine11 = Utils.formatMessage("Level: &b" + profile.level + " (" + profile.xp + " xp / " + profile.getXpGoal() + " xp)");
         setPlayerScoreboardSidebarLine(playerUUID, playerLine11, 11);
 
         Component playerLine10 = Utils.formatMessage("Kills: &c" + profile.kills);

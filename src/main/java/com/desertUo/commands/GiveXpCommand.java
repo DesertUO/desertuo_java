@@ -97,9 +97,9 @@ public class GiveXpCommand implements BasicCommand {
 
             String input = args[0].toLowerCase();
             return cachedNames.stream()
-                    .filter(name -> name.toLowerCase().startsWith(input))
-                    .limit(20)
-                    .toList();
+                .filter(name -> name.toLowerCase().startsWith(input))
+                .limit(20)
+                .toList();
         }
         return List.of();
     }
@@ -111,9 +111,9 @@ public class GiveXpCommand implements BasicCommand {
 
     private void updateCache() {
         this.cachedNames = Arrays.stream(Bukkit.getOfflinePlayers())
-                .map(OfflinePlayer::getName)
-                .filter(Objects::nonNull)
-                .toList();
+            .map(OfflinePlayer::getName)
+            .filter(Objects::nonNull)
+            .toList();
         this.lastUpdate = System.currentTimeMillis();
     }
 }

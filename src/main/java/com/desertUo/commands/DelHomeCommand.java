@@ -45,11 +45,9 @@ public class DelHomeCommand implements BasicCommand {
 
             List<Document> homes = data.getList("homes", Document.class, new ArrayList<>());
 
-            // Try to remove the home. removeIf returns true if something was actually removed.
             boolean removed = homes.removeIf(doc -> doc.getString("name").equalsIgnoreCase(homeName));
 
             if (removed) {
-                // Update the database with the shortened list
                 plugin.getMongoManager().updatePlayerDataField(player.getUniqueId(), "homes", homes);
                 player.sendMessage(Utils.formatMessage("&aHome '&f" + homeName + "&a' has been deleted."));
             } else {

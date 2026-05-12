@@ -1,0 +1,73 @@
+name: ${name}
+version: ${version}
+main: com.desertUo.DesertUo
+authors: [ DesertUo ]
+description: A general purpose plugin for the DesertUo servers
+website: www.desertuo.com
+api-version: '1.21.11'
+
+permissions:
+  desertuo.commands.fly:
+    description: Allows the usage of the /fly command
+    default: op
+  desertuo.commands.testparticles:
+    description: Allows the usage of the /testparticles command
+    default: true
+  desertuo.commands.spawn:
+    description: Allows the usage of the /spawn command
+    default: true
+  desertuo.commands.giverandomitem:
+    description: Allows the usage of the /giverandomitem command
+    default: op
+  desertuo.commands.broadcast:
+    description: Allows the usage of the /broadcast command
+    default: op
+  desertuo.commands.clearbroadcast:
+    description: Allows the usage of the /clearbroadcast command
+    default: op
+  desertuo.commands.profile:
+    description: Allows the usage of the /profile command
+    default: true
+  desertuo.commands.home:
+    description: Allows the usage of the /home command
+    default: true
+  desertuo.commands.sethome:
+    description: Allows the usage of the /sethome command
+    default: true
+  desertuo.commands.delhome:
+    description: Allows the usage of the /delhome command
+    default: true
+  desertuo.commands.homes:
+    description: Allows the usage of the /homes command
+    default: true
+  desertuo.commands.giveci:
+    description: Allows the usage of the /giveci command
+    default: op
+  desertuo.commands.starter:
+    description: Allows the usage of the /starter command
+    default: true
+  desertuo.commands.help:
+    description: Allows the usage of the /help command
+    default: true
+  desertuo.commands.givexp:
+    description: Allos the usage of the /givexp command
+    default: op
+
+
+dependencies:
+  server:
+    LuckPerms:
+      load: BEFORE
+      required: true
+    ProtocolLib:
+      load: BEFORE
+      required: false
+    Vault:
+      load: BEFORE
+      required: true
+    CoreProtect:
+      load: BEFORE
+      required: false
+    EzEconomy:
+      load: BEFORE
+      required: false

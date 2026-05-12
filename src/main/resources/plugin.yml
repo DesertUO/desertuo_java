@@ -1,0 +1,130 @@
+name: ${name}
+version: ${version}
+main: com.desertUo.DesertUo
+api-version: '1.21'
+authors: [ DesertUo ]
+description: A general purpose plugin for the DesertUo servers
+website: desertuo.com
+
+commands:
+  fly:
+    description: Toggles flight mode for player
+    usage: /fly
+    permission: desertuo.commands.fly
+  testparticles:
+    description: Tests particles
+    usage: /testparticles
+    permission: desertuo.commands.testparticles
+  spawn:
+    description: Teleports the player to the server spawn
+    usage: /spawn
+    permission: desertuo.commands.spawn
+  giverandomitem:
+    description: Gives a random item to the specified player
+    usage: /giverandomitem <player>
+    permission: desertuo.commands.giverandomitem
+    aliases:
+      - giveri
+  broadcast:
+    description: Broadcasts a message to all players
+    usage: /broadcast <msg>
+    permission: desertuo.commands.broadcast
+    aliases:
+      - bc
+  clearbroadcast:
+    description: Broadcasts a message to all players without prefix
+    usage: /clearbroadcast <msg>
+    permission: desertuo.commands.clearbroadcast
+    aliases:
+      - cbc
+      - clearbc
+  profile:
+    description: Shows info of a specified player or self
+    usage: /profile [player]
+    permission: desertuo.commands.profile
+  home:
+    description: Teleports to a specific home or lists all of them
+    usage: /home [home]
+    permission: desertuo.commands.home
+  sethome:
+    description: Sets a home with a name
+    usage: /sethome [home]
+    permission: desertuo.commands.sethome
+  delhome:
+    description: Removes a home with a name
+    usage: /sethome <home>
+    permission: desertuo.commands.delhome
+  homes:
+    description: Lists all of the player's homes
+    usage: /homes
+    permission: desertuo.commands.homes
+  giveci:
+    description: Gives a given custom item
+    usage: /giveci <CUSTOM_ITEM_ID>
+    permission: desertuo.commands.giveci
+  starter:
+    description: Gives the starter kit to the player
+    usage: /starter
+    permission: desertuo.commands.starter
+  help:
+    description: Shows the help menu
+    usage: /help [<>]
+    permission: desertuo.commands.help
+  message:
+    description: Messages a player
+    usage: /message <player> <content>
+    permission: desertuo.commands.message
+  givexp:
+    description: Gives experience to specified player
+    usage: /givexp <player> <amount>
+    permission: desertuo.commands.givexp
+
+permissions:
+  desertuo.commands.fly:
+    description: Allows the usage of the /fly command
+    default: op
+  desertuo.commands.testparticles:
+    description: Allows the usage of the /testparticles command
+    default: true
+  desertuo.commands.spawn:
+    description: Allows the usage of the /spawn command
+    default: true
+  desertuo.commands.giverandomitem:
+    description: Allows the usage of the /giverandomitem command
+    default: op
+  desertuo.commands.broadcast:
+    description: Allows the usage of the /broadcast command
+    default: op
+  desertuo.commands.clearbroadcast:
+    description: Allows the usage of the /clearbroadcast command
+    default: op
+  desertuo.commands.profile:
+    description: Allows the usage of the /profile command
+    default: true
+  desertuo.commands.home:
+    description: Allows the usage of the /home command
+    default: true
+  desertuo.commands.sethome:
+    description: Allows the usage of the /sethome command
+    default: true
+  desertuo.commands.delhome:
+    description: Allows the usage of the /delhome command
+    default: true
+  desertuo.commands.giveci:
+    description: Allows the usage of the /giveci command
+    default: op
+  desertuo.commands.starter:
+    description: Allows the usage of the /starter command
+    default: true
+  desertuo.commands.help:
+    description: Allows the usage of the /help command
+    default: true
+  desertuo.commands.message:
+    description: Allows the usage of the /message command
+    default: true
+  desertuo.commands.givexp:
+    description: Allos the usage of the /givexp command
+    default: op
+
+depend: [LuckPerms, ProtocolLib, Vault]
+softdepend: [CoreProtect, EzEconomy]

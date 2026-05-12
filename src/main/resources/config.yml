@@ -1,0 +1,15 @@
+# Server spawn location used on /spawn command
+spawn-teleport-coordinates:
+  - 0.5
+  - 63
+  - 0.5
+
+database-uri: "mongodb://localhost:27017"
+
+starter-command-cooldown: 30000
+
+gric-exclue-materials:
+  - "BARRIER"
+
+gric-exclude-contains:
+  - "LEGACY"

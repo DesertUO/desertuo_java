@@ -1,0 +1,38 @@
+motd-lines:
+  - Test
+  - Test2 Updated!
+
+tablist:
+  header:
+    - "Header 1"
+  footer:
+    - "Footer 1"
+
+help-command-lines:
+  - "&3DesertUo"
+  - ""
+  - "Commands:"
+  - "&9- &b/starter &7(If you did not claim yours yet)"
+  - "&9- &b/spawn"
+  - "&9- &b/profile [player]"
+  - "&9- &b/home [name]"
+  - "&9- &b/sethome <name>"
+  - "&9- &b/delhome <name>"
+  - "&9- &b/homes"
+  - "&9- &b/tpa <player>"
+  - "&9- &b/tpahere"
+  - "&9- &b/tpaccept"
+  - "&9- &b/help &7Shows this"
+  - "&9- &b/tpacancel"
+  - "&9- &b/rtp"
+  - "&9- &b/bal"
+  - "&9- &b/pay"
+  - "&9- &b/baltop"
+  - ""
+  - "The server ip is:"
+  - "&emc.desertuo.com &c(java)"
+  - "&ebedrock.desertuo.com &c(bedrock)"
+
+broadcast-prefix: "&b&l[Broadcast]&r "
+
+spawn-teleport-message: "&eTeleporting to spawn..."

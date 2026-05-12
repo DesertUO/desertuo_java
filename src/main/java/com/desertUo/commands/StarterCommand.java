@@ -45,7 +45,6 @@ public class StarterCommand implements BasicCommand {
             KitUtils.handleKitClaim(player, false);
             return;
         } else {
-            // Millis difference
             long timeElapsed = System.currentTimeMillis() - this.playerCooldowns.get(player.getUniqueId());
 
             if(timeElapsed >= playerCooldownMillis) {

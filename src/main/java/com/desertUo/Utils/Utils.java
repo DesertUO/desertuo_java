@@ -128,13 +128,10 @@ public class Utils {
     }
 
     public static void setPlayerPermission(UUID playerUUID, String permission, boolean value) {
-        // 1. Load the user from the LuckPerms DataStore
         lpApi.getUserManager().modifyUser(playerUUID, user -> {
 
-            // 2. Create the Node (the permission object)
             Node node = Node.builder(permission).value(value).build();
 
-            // 3. Add the node to the user's data
             DataMutateResult result = user.data().add(node);
 
             if (result.wasSuccessful()) {

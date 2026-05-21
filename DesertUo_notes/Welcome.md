@@ -27,28 +27,28 @@ Here are all the commands we have, with their description, algorithms, etc., thi
 
 ## Commands
 
-**spawn**: Teleports the user to the world spawn
-**fly**: Toggles the player flight mode
+**spawn**: Teleports the user to the world spawn\
+**fly**: Toggles the player flight mode\
 **giverandomitem**: Gives a random item (ignoring legacy or OP items or other
 specified ones in config) to the player or the target player(s) specified
-(admin)
-**home**: Teleports the player to their home or specified one
-**homes**: Lists all of player's homes with coordinates
+(admin)\
+**home**: Teleports the player to their home or specified one\
+**homes**: Lists all of player's homes with coordinates\
 **sethome**: Sets a home with a given name (default to home) in the player
-locations (up to 5 homes)
-**delhome**: Deletes the specified home from the player's homes
+locations (up to 5 homes)\
+**delhome**: Deletes the specified home from the player's homes\
 **broadcast**: Broadcasts a message to the entire server with a preffix (in
-config) (color codes &) (admin)
+config) (color codes &) (admin)\
 **clearbroadcast**: Broadcast a message without preffix to the entire server
-(color codes &) (admin)
+(color codes &) (admin)\
 **starter**: Gives the starting set of leather armor, stone tools and 16
-steak to the player, cooldown of 30 seconds
+steak to the player, cooldown of 30 seconds\
 **help**: Lists all of these commands and the server ip, website, and other
-things that I may add (config)
+things that I may add (config)\
 **givci**: Gives the player or specified player target a Custom Item (plugin
 defined), I have like CA_Wand that opens the ChunkAnalyzer menu for the moment
 its a plugin that shows the load of a chunk and allows to tp to check lag etc
-(admin)
+(admin)\
 **profile**: Opens a GUI that shows the player head in the center with lore
 of: level (no function, just default to 1 level, 0 xp, and 50xp goal or smth,
 to the db, no actual event or smth to change it), kills (dynamic and cache and

@@ -18,7 +18,7 @@ Heavily relies on your server having the following plugins:
 
 ## Database
 Also relies heavily on MongoDB, but I'll probably change that to HTTP calls to
-a backend, I'm writing it in Go. So that it can work more easily with a
+a backend I'm writing in Go. So that it can work more easily with a
 website. ASDADas
 
 ---

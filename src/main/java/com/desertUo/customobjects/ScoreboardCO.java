@@ -76,13 +76,12 @@ public class ScoreboardCO implements Runnable {
 
             Document data = plugin.getMongoManager().getPlayerData(playerUUID);
 
-            /* Start assigning new team to player for showing its nametag on the main thread */
+            // Start assigning new team to player for showing its nametag on the main thread
             Bukkit.getScheduler().runTask(plugin, () -> {
                 Scoreboard playerScoreboard = getAndCreateIfNullPlayerScoreboard(playerUUID);
 
                 Component sidebarTitle = Utils.formatMessage("&e&lSurvival");
 
-                // FIX: Check if "sidebar" exists. If it does, unregister it or reuse it.
                 Objective playerSidebar = playerScoreboard.getObjective("sidebar");
                 if (playerSidebar != null) {
                     playerSidebar.unregister();

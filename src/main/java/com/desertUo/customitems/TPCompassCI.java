@@ -3,6 +3,7 @@ package com.desertUo.customitems;
 import com.desertUo.Utils.Utils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -12,7 +13,12 @@ import java.util.List;
 public class TPCompassCI extends CustomItem{
 
     public TPCompassCI() {
-        super("TP_COMPASS", TPCompassCI.getItemStackFormatted(), true, true);
+        super("TP_COMPASS", TPCompassCI.getItemStackFormatted(), false, true);
+    }
+
+    @Override
+    public void onRightClick(Player player) {
+        // TODO
     }
 
     public static ItemStack getItemStackFormatted() {

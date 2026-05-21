@@ -38,10 +38,11 @@ public abstract class CustomItem {
         return this.itemStack;
     }
 
-    // Methods to be overriden to say what happens on each click
+    // Methods to be overridden to say what happens on each click
     public void onLeftClick(Player player) {};
     public void onRightClick(Player player) {};
 
+    // Method to get the item stack assigned to the custom plugin class (or the child class...)
     public ItemStack getItemStack(DesertUo plugin) {
         ItemStack item = itemStack.clone();
         ItemMeta meta = item.getItemMeta();
@@ -54,6 +55,7 @@ public abstract class CustomItem {
         return item;
     }
 
+    // Method to get the ID of the given item stack, if it doesn't have that, returns null
     public static String getCustomItemId(ItemStack item, DesertUo plugin) {
         if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
             return null;

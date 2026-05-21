@@ -1,7 +1,6 @@
 package com.desertUo.listeners;
 
 import com.desertUo.DesertUo;
-import com.desertUo.Utils.Utils;
 import com.desertUo.holder.ProfileHolder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

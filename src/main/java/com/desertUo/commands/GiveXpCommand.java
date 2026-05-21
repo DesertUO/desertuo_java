@@ -90,7 +90,8 @@ public class GiveXpCommand implements BasicCommand {
         if (args.length == 1) {
             long now = System.currentTimeMillis();
 
-            // Update cache every 10 minutes (600,000 ms)
+            // Update cache every 10 minutes (600 000 ms) Prob to be changed, as when I tested, it quite didn't work
+            // as expected, also for other commands
             if (now - lastUpdate > 600_000 || cachedNames.isEmpty()) {
                 this.updateCache();
             }

@@ -55,6 +55,7 @@ public final class DesertUo extends JavaPlugin {
 
     private static DesertUo desertUoInstance;
 
+    // TODO - Use the API backend with HTTP requests instead of whole MongoDB implementation again here
     private MongoClient mongoClient;
     private MongoDatabase mongoDatabase;
     private MongoManager mongoManager;

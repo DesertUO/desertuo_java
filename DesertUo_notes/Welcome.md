@@ -58,7 +58,7 @@ on db), deaths (dynamic and cache on db)
 
 ## Profile
 This represents a player's profile, it has the following stats:
-Xp, Xp goal, Level, Balance (Money), Kills, Deaths, ...
+Xp, Level, Balance (Money), Kills, Deaths, ...
 
 ---
 
@@ -127,8 +127,6 @@ Collections:
 		- name
 		- level
 		- level-xp
-		- level-xp-goal (im planning to remove this for a runtime xp goal
-        function that depends on the level)
 		- kills
 		- deaths
 		- homes:

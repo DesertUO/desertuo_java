@@ -1,7 +1,7 @@
 name: ${name}
 version: ${version}
 main: com.desertUo.DesertUo
-api-version: '1.21'
+api-version: '26.1.2'
 authors: [ DesertUo ]
 description: A general purpose plugin for the DesertUo servers
 website: desertuo.com

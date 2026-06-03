@@ -4,7 +4,7 @@ main: com.desertUo.DesertUo
 authors: [ DesertUo ]
 description: A general purpose plugin for the DesertUo servers
 website: www.desertuo.com
-api-version: '1.21.11'
+api-version: '26.1.2'
 
 permissions:
   desertuo.commands.fly:

@@ -20,7 +20,6 @@ public class ClearBroadcastCommand implements BasicCommand {
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         if(args.length == 0) {

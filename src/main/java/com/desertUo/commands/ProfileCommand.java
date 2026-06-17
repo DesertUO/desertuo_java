@@ -31,7 +31,6 @@ public class ProfileCommand implements BasicCommand {
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         if(!(sender instanceof Player player)) {
@@ -61,7 +60,7 @@ public class ProfileCommand implements BasicCommand {
             }
         }
 
-        // TODO
+        // TODO - When API is more robust, make a better profile GUI
         sender.sendMessage(Utils.formatMessage("&aShowing profile GUI of: &l" + playerName + "..."));
 
         UUID finalTargetPlayer = targetPlayer;

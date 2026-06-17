@@ -19,7 +19,6 @@ public class GiveCICommand implements BasicCommand {
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         if(!(sender instanceof Player player)) {

@@ -36,3 +36,9 @@ help-command-lines:
 broadcast-prefix: "&b&l[Broadcast]&r "
 
 spawn-teleport-message: "&eTeleporting to spawn..."
+
+website-book-gui:
+  title: "DesertUo's website"
+  author: "DesertUo"
+  pages:
+    - ["", "&b&lDesertUo", "&e&nwww.desertuo.com"]

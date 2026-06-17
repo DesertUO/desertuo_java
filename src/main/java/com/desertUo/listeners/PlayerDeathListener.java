@@ -4,6 +4,9 @@ import com.desertUo.DesertUo;
 import com.desertUo.Utils.Utils;
 import com.desertUo.players.PlayerProfileCO;
 import com.desertUo.customobjects.ScoreboardCO;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.apache.commons.text.StringEscapeUtils;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,6 +23,13 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player killed = e.getPlayer();
         Player killer = killed.getKiller();
+
+        Component deathMessage = e.deathMessage();
+        if(deathMessage != null) {
+            String deathMessageString = PlainTextComponentSerializer.plainText().serialize(deathMessage);
+            String safeDeathMessageString = StringEscapeUtils.escapeHtml4(deathMessageString);
+            plugin.broadcastChatMessageWebSocket(safeDeathMessageString);
+        }
 
         UUID killedUUID = killed.getUniqueId();
 

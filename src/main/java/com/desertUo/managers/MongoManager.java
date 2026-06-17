@@ -3,7 +3,7 @@ package com.desertUo.managers;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ public class MongoManager {
     public MongoManager(MongoDatabase db) {
         this.playerCollection = db.getCollection("player_data");
         playerCollection.createIndex(new Document("level", -1));
+        playerCollection.createIndex(new Document("uuid", 1));
 
         this.playerMessagesCollection = db.getCollection("player_messages");
 

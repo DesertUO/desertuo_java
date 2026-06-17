@@ -27,14 +27,13 @@ public class MessageCommand implements BasicCommand {
     private List<String> cachedNames = new ArrayList<>();
     private long lastUpdate = 0;
 
-            public MessageCommand() {
-                super();
-                this.updateCache();
-            }
+    public MessageCommand() {
+        super();
+        this.updateCache();
+    }
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         if(!(sender instanceof Player player)) {

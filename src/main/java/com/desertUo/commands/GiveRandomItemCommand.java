@@ -28,11 +28,11 @@ public class GiveRandomItemCommand implements BasicCommand {
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         List<Player> targets = new ArrayList<>();
-        // Working on this (WIP - TODO)
+        // TODO - GiveRandomItemCommand so that it doesn't lag on first use
+        // Something to do with legacy way of handling materials
         if(!(sender instanceof Player player) && (args.length == 0)) {
             sender.sendMessage(Utils.formatMessage("&cError. This command can only be run by players"));
             return;

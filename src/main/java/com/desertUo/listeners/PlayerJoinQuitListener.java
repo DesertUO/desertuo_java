@@ -5,6 +5,8 @@
     import com.desertUo.players.PlayerProfileCO;
     import com.desertUo.customobjects.ScoreboardCO;
     import net.kyori.adventure.text.Component;
+    import net.kyori.adventure.text.minimessage.MiniMessage;
+    import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
     import net.kyori.adventure.title.Title;
     import net.luckperms.api.LuckPerms;
     import org.bson.Document;
@@ -26,7 +28,9 @@
 
         @EventHandler
         public void onPlayerJoin(PlayerJoinEvent e) {
-            e.joinMessage(Utils.formatMessage("&7[&a+&7]&r ").append(e.getPlayer().name()));
+            Component joinMessage = Utils.formatMessage("&7[&a+&7]&r ").append(e.getPlayer().name());
+            e.joinMessage(joinMessage);
+            plugin.broadcastChatMessageWebSocket(PlainTextComponentSerializer.plainText().serialize(joinMessage));
 
             /* Player data */
             Player player = e.getPlayer();
@@ -71,7 +75,9 @@
 
         @EventHandler
         public void onPlayerQuit(PlayerQuitEvent e) {
-            e.quitMessage(Utils.formatMessage("&7[&c-&7]&r ").append(e.getPlayer().name()));
+            Component quitMessage = Utils.formatMessage("&7[&c-&7]&r ").append(e.getPlayer().name());
+            e.quitMessage(quitMessage);
+            plugin.broadcastChatMessageWebSocket(PlainTextComponentSerializer.plainText().serialize(quitMessage));
 
             Player player = e.getPlayer();
             UUID playerUUID = player.getUniqueId();

@@ -10,6 +10,9 @@ import com.desertUo.managers.CustomItemManager;
 import com.desertUo.managers.MongoManager;
 import com.desertUo.messaagesystem.MessageUtils;
 import com.desertUo.players.PlayerProfileCO;
+import com.desertUo.websockets.ChatWebSocketListener;
+import com.desertUo.websockets.WSChatMessage;
+import com.google.gson.Gson;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -31,12 +34,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.*;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.WebSocket;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public final class DesertUo extends JavaPlugin {
+    private final Gson gson = new Gson();
+
     public HashSet<Player> playersToggledFlight = new HashSet<>();
 
     private LuckPerms lpApi;
@@ -96,6 +107,47 @@ public final class DesertUo extends JavaPlugin {
         return this.coreProtect;
     }
 
+    // WebSocket
+    private WebSocket chatWebSocketClient;
+    private HttpClient chatHttpClient;
+    private ScheduledExecutorService chatKeepAliveExecutor;
+    private URI chatServerURI;
+
+    private String serverSessionID;
+
+    public void setServerSessionID(String id) {
+        this.serverSessionID = id;
+    }
+
+    public String getServerSessionID() {
+        return this.serverSessionID;
+    }
+
+    public void sendChatMessageWebSocket(String msg) {
+        if(chatWebSocketClient != null) {
+            chatWebSocketClient.sendText(msg, true);
+        }
+    }
+
+    public void broadcastChatMessageWebSocket(String msg) {
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            WSChatMessage packet = new WSChatMessage(msg);
+            String jsonStr = gson.toJson(packet);
+            sendChatMessageWebSocket(jsonStr);
+        });
+    }
+    public void sendToClientChatWebSocket(String targetId, String msg) {
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            WSChatMessage packet = new WSChatMessage(targetId, msg);
+            String jsonString = gson.toJson(packet);
+            sendChatMessageWebSocket(jsonString);
+        });
+    }
+
+    public WebSocket getChatWebSocketClient() {
+        return this.chatWebSocketClient;
+    }
+
     @Override
     public void onLoad() {
         protocolManager = ProtocolLibrary.getProtocolManager();
@@ -115,6 +167,7 @@ public final class DesertUo extends JavaPlugin {
         RegisteredServiceProvider<LuckPerms> lpProvider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if(lpProvider != null) {
             lpApi = lpProvider.getProvider();
+            this.getLogger().info("Luckperms provider enabled/got");
         }
 
         if (!setupEconomy()) {
@@ -140,6 +193,17 @@ public final class DesertUo extends JavaPlugin {
         getLogger().info("MongoDB Manager Ready!");
 
         this.messageUtils = new MessageUtils(this);
+
+        this.chatKeepAliveExecutor = Executors.newSingleThreadScheduledExecutor();
+
+        this.chatHttpClient = HttpClient.newBuilder()
+                .executor(chatKeepAliveExecutor)
+                .build();
+
+        String chatServerURIString = this.getConfig().getString("chat-ws-server-uri", "ws://localhost:8300/chat");
+        chatServerURI = URI.create(chatServerURIString);
+
+        connectChatWebSocket();
 
         this.customItemManager = new CustomItemManager(this);
 
@@ -180,6 +244,7 @@ public final class DesertUo extends JavaPlugin {
 
             commands.registrar().register(MessageCommand.NAME, MessageCommand.DESCRIPTION, MessageCommand.ALIASES, new MessageCommand());
             commands.registrar().register(GiveXpCommand.NAME, GiveXpCommand.DESCRIPTION, GiveXpCommand.ALIASES, new GiveXpCommand());
+            commands.registrar().register(WebsiteCommand.NAME, WebsiteCommand.DESCRIPTION, new WebsiteCommand());
         });
 
         this.getLogger().info("Plugin enabled correctly");
@@ -225,6 +290,15 @@ public final class DesertUo extends JavaPlugin {
             mongoClient.close();
             getLogger().info("MongoDB connection closed safely.");
         }
+
+        if(chatWebSocketClient != null) {
+            chatWebSocketClient.sendClose(WebSocket.NORMAL_CLOSURE, "Plugin deactivated")
+                    .thenAccept(ws -> this.getLogger().info("Chat websocket connection closed correctly"));
+        }
+
+        if(chatKeepAliveExecutor != null) {
+            chatKeepAliveExecutor.shutdown();
+        }
     }
 
     private boolean setupEconomy() {
@@ -245,6 +319,21 @@ public final class DesertUo extends JavaPlugin {
                 getLogger().info("CoreProtect API Hooked Successfully!");
             }
         }
+    }
+
+    public void connectChatWebSocket() {
+        this.getLogger().info("Trying to connect to the chat websocket...");
+
+        chatHttpClient.newWebSocketBuilder()
+                .buildAsync(chatServerURI, new ChatWebSocketListener(this))
+                .thenAccept(ws -> {
+                    this.chatWebSocketClient = ws;
+                    this.getLogger().info("Successfully Connected to chat websocket");
+                }).exceptionally(ex -> {
+                    this.getLogger().severe("Connection failure: Can't connect to the chat websocket. Retrying in 10 seconds...");
+                    chatKeepAliveExecutor.schedule(this::connectChatWebSocket, 10, TimeUnit.SECONDS);
+                    return null;
+        });
     }
 
     public static DesertUo getPlugin() {

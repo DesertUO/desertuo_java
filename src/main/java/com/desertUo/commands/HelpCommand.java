@@ -22,7 +22,6 @@ public class HelpCommand implements BasicCommand {
 
     @Override
     public void execute(CommandSourceStack source, String[] args) {
-        final Component name = source.getExecutor() != null ? source.getExecutor().name() : source.getSender().name();
         final CommandSender sender = source.getSender();
 
         String search = (args.length > 0) ? String.join(" ", args) : "";

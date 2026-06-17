@@ -1,6 +1,6 @@
 package com.desertUo.messaagesystem;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.bson.Document;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;

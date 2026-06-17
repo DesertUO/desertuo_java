@@ -18,7 +18,7 @@ public class TPCompassCI extends CustomItem{
 
     @Override
     public void onRightClick(Player player) {
-        // TODO
+        // TODO - Add functionality to TPCompassCI so that the player tps where they are looking
     }
 
     public static ItemStack getItemStackFormatted() {

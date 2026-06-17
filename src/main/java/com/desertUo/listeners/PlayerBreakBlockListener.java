@@ -5,6 +5,7 @@ import com.desertUo.Utils.Utils;
 import com.desertUo.customobjects.ScoreboardCO;
 import com.desertUo.players.PlayerProfileCO;
 import net.coreprotect.CoreProtectAPI;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -53,7 +54,9 @@ public class PlayerBreakBlockListener implements Listener {
                 long xpAmount = calculateXp(type);
                 profile.addXp(player, xpAmount);
 
-                player.sendActionBar(Utils.formatMessage("&a+&2" + xpAmount + " XP &a (Mining: &f" + type.name() + "&a)"));
+                player.sendActionBar(Utils.formatMessage("&a+&2" + xpAmount + " XP &a (Mining: &f")
+                        .append(Component.translatable(type.translationKey()))
+                        .append(Utils.formatMessage("&a)")));
             });
         });
     }

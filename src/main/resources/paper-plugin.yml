@@ -52,6 +52,9 @@ permissions:
   desertuo.commands.givexp:
     description: Allos the usage of the /givexp command
     default: op
+  desertuo.commands.website:
+    description: Allows the usage of the /website command
+    default: true
 
 
 dependencies:

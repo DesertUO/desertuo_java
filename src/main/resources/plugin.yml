@@ -78,6 +78,10 @@ commands:
     description: Gives experience to specified player
     usage: /givexp <player> <amount>
     permission: desertuo.commands.givexp
+  website:
+    description: Opens a book gui showing the links of the server
+    usage: /website
+    permission: desertuo.commands.website
 
 permissions:
   desertuo.commands.fly:
@@ -123,8 +127,11 @@ permissions:
     description: Allows the usage of the /message command
     default: true
   desertuo.commands.givexp:
-    description: Allos the usage of the /givexp command
+    description: Allows the usage of the /givexp command
     default: op
+  desertuo.commands.website:
+    description: Allows the usage of the /website command
+    default: true
 
 depend: [LuckPerms, ProtocolLib, Vault]
 softdepend: [CoreProtect, EzEconomy]

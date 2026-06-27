@@ -7,12 +7,16 @@ Idk it's just a Minecraft Paper plugin
 
 ---
 
-Heavily relies on your server having the following plugins:
+Relies on your server having the following plugins:
  - LuckPerms
  - CoreProtect
  - EzEconomy   <-
  - Vault       <- Not that much for the moment, but I have plans on using them in the future
  - ProtocolLib <-
+
+---
+## Compiling
+This project uses Maven as the build manager.
 
 ---
 
